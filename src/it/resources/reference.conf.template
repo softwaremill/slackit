@@ -1,0 +1,11 @@
+slack {
+  clientId = ""
+  clientSecret = ""
+  scopes = ""
+}
+
+it {
+  token = ""
+  user = ""
+  channelId = ""
+}
