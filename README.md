@@ -17,6 +17,8 @@ Changelog
 
 - Moving parts for implementing WebApi methods
 - WebApi methods
+  - channels.history
+  - channels.info
   - channels.list
   - oauth.access
   - team.info
