@@ -6,24 +6,7 @@ Slackit is a simple API wrapper for Slack. It uses Reactive Streams approach to 
 Usage
 =====
 
-
-
 Changelog
 =========
 
-## [unreleased] - unreleased
-
-#### Added
-
-- Moving parts for implementing WebApi methods
-- WebApi methods
-  - channels.history
-  - channels.info
-  - channels.list
-  - oauth.access
-  - team.info
-  - users.getPresence
-  - users.identity
-  - users.info
-  - users.list
-- Example apps for oauth flow and simple api usage (based on users.list)
+See [CHANGELOG.md](CHANGELOG.md)
