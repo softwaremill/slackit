@@ -1,6 +1,7 @@
 package com.softwaremill.slackit.channels
 
 import akka.stream.scaladsl.Sink
+import com.softwaremill.slackit.webapi.channels.model.SlackTimeStamp
 import com.softwaremill.slackit.{BaseItSpec, Slack}
 
 class HistorySpec extends BaseItSpec {
@@ -13,7 +14,7 @@ class HistorySpec extends BaseItSpec {
     val count   = 100
 
     //when
-    val result = Slack(config).channels.history(token, channel, count).take(count).runWith(Sink.seq)
+    val result = Slack(config).channels.history(token, channel, count).log("message").take(count).runWith(Sink.seq)
 
     //then
     result.map(_ should have size count)
@@ -24,8 +25,8 @@ class HistorySpec extends BaseItSpec {
     val token   = config.token
     val channel = config.testChannelId
     val count   = 100
-    val latest  = Some("1483013245.006118")
-    val oldest  = Some("1483013189.006114")
+    val latest  = Some(SlackTimeStamp("1483013245.006118"))
+    val oldest  = Some(SlackTimeStamp("1483013189.006114"))
 
     //when
     val result = Slack(config).channels.history(token, channel, count, false, latest, oldest).runWith(Sink.seq)
@@ -39,8 +40,8 @@ class HistorySpec extends BaseItSpec {
     val token   = config.token
     val channel = config.testChannelId
     val count   = 100
-    val latest  = Some("1483013245.006118")
-    val oldest  = Some("1483013189.006114")
+    val latest  = Some(SlackTimeStamp("1483013245.006118"))
+    val oldest  = Some(SlackTimeStamp("1483013189.006114"))
 
     //when
     val result = Slack(config).channels.history(token, channel, count, true, latest, oldest).runWith(Sink.seq)
