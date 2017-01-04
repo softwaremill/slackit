@@ -5,9 +5,12 @@ sealed trait Message {
   def reactions: Option[List[Reaction]]
 }
 
-sealed trait UserMessage {
-  def user: String
+sealed trait TextMessage {
   def text: String
+}
+
+sealed trait UserMessage extends TextMessage {
+  def user: String
 }
 
 case class RegularMessage(user: String, text: String, ts: SlackTimeStamp, reactions: Option[List[Reaction]])
@@ -23,5 +26,9 @@ case class SubtypedMessage(user: String,
     with Message
 
 case class BotMessage(bot_id: String, ts: SlackTimeStamp, reactions: Option[List[Reaction]]) extends Message
+
+case class FileCommentMessage(text: String, ts: SlackTimeStamp, reactions: Option[List[Reaction]])
+    extends Message
+    with TextMessage
 
 case class MessagesObject(messages: List[Message], has_more: Option[Boolean])
