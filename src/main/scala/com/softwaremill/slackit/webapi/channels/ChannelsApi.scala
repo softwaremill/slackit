@@ -9,7 +9,7 @@ import com.softwaremill.slackit._
 import com.softwaremill.slackit.webapi.channels.model._
 import com.softwaremill.slackit.webapi.{Endpoints, SlackEndpoint}
 import io.circe.generic.auto._
-import implicits._
+import com.softwaremill.slackit.webapi.implicits._
 
 import scala.concurrent.{ExecutionContext, Future}
 

@@ -2,6 +2,7 @@ package com.softwaremill.slackit
 
 import akka.stream.Materializer
 import com.softwaremill.slackit.webapi.channels.ChannelsApi
+import com.softwaremill.slackit.webapi.chat.ChatApi
 import com.softwaremill.slackit.webapi.oauth.OAuth
 import com.softwaremill.slackit.webapi.team.TeamApi
 import com.softwaremill.slackit.webapi.users.UsersApi
@@ -13,3 +14,4 @@ case class Slack(config: SlackConfig)(implicit exec: RequestExecutor, ec: Execut
     with TeamApi
     with UsersApi
     with ChannelsApi
+    with ChatApi

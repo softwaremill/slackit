@@ -6,7 +6,7 @@ import org.scalatest.{FlatSpec, Matchers}
 class MessageDecoderSpec extends FlatSpec with Matchers {
   behavior of "Message Decoder"
 
-  import implicits._
+  import com.softwaremill.slackit.webapi.implicits._
 
   it should "properly decode MeMessage" in {
     //given

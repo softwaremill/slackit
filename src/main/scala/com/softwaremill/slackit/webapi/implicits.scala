@@ -1,8 +1,9 @@
-package com.softwaremill.slackit.webapi.channels.model
+package com.softwaremill.slackit.webapi
 
+import com.softwaremill.slackit.webapi.channels.model._
 import io.circe.generic.auto._
-import io.circe.{Decoder, Encoder, HCursor}
 import io.circe.syntax._
+import io.circe.{Decoder, Encoder, HCursor}
 
 object implicits {
   implicit val slackTimeStampDecoder: Decoder[SlackTimeStamp] = Decoder.decodeString.map(SlackTimeStamp(_))

@@ -8,6 +8,10 @@ object Endpoints {
     val list    = "/api/channels.list"
   }
 
+  object chat {
+    val postMessage = "/api/chat.postMessage"
+  }
+
   object oauth {
     val access = "/api/oauth.access"
   }
