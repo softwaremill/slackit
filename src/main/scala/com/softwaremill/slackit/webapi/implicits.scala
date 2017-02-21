@@ -14,7 +14,15 @@ object implicits {
         case Right("bot_message")  => c.as[BotMessage]
         case Right("file_comment") => c.as[FileCommentMessage]
         case Right(_)              => c.as[SubtypedMessage]
-        case _                     => c.as[RegularMessage]
+        case _ =>
+          c.get[String]("parent_user_id") match {
+            case Right(_) => c.as[ThreadReply]
+            case _ =>
+              c.get[Int]("reply_count") match {
+                case Right(_) => c.as[MessageWithThread]
+                case _        => c.as[RegularMessage]
+              }
+          }
       }
     }
   }
@@ -26,10 +34,12 @@ object implicits {
   implicit val messageEncoder: Encoder[Message] = new Encoder[Message] {
     override def apply(a: Message) = {
       a match {
-        case msg: RegularMessage  => msg.asJson
-        case msg: SubtypedMessage => msg.asJson
-        case msg: BotMessage      => msg.asJson
-        case _                    => throw new Error(s"Could not encode message $a")
+        case msg: RegularMessage    => msg.asJson
+        case msg: MessageWithThread => msg.asJson
+        case msg: SubtypedMessage   => msg.asJson
+        case msg: BotMessage        => msg.asJson
+        case msg: ThreadReply       => msg.asJson
+        case _                      => throw new Error(s"Could not encode message $a")
       }
     }
   }
